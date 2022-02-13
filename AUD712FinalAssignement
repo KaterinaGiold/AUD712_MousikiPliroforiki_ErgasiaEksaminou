@@ -1,0 +1,21 @@
+s.boot;
+{ SinOsc.ar(LFNoise0.ar(2).range(220, 440).poll(label: \LFNoise), 0, 0.8) }.play;
+​
+
+(
+{
+    var freqs = SinOsc.ar([0.2, 0.3]).range(220,440);
+    freqs.poll(label: [\freq1, \freq2]);
+    SinOsc.ar(freqs, 0, 0.6);
+}.play;
+)
+
+
+
+
+
+//I play them together
+{Pan2.ar( LFSaw.ar(200, 0, 1 * SinOsc.kr(1, 0, 1).abs), SinOsc.kr(0.5))}.play;
+{ Pan2.ar( Mix.fill( 8, { LFSaw.ar(200 + 200.0.rand, 0, 1 / 8) }), SinOsc.kr( 0.5 ) )  }.play;
+
+
